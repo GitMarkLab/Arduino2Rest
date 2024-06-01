@@ -16,8 +16,8 @@ How it works
 the HTML File provides the blocks to the web front end.
 it grabs the code snippes from each block as String parts and append them to the final complete code
 
-# Definition oof the blocks (created with Blockly Block creator)
+### Definition of the blocks (created with Blockly Block creator)
 Arduino2Rest_block.js
 
-# code snippes (python as string)
+### code snippes (python as string)
 Arduino2Rest_code.js
