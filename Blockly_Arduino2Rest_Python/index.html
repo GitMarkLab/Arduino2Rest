@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockly Direktes Laden</title>
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="/home/mrt/node_modules/blockly/blockly_compressed.js"></script>
+    <script src="/home/mrt/node_modules/blockly/blocks_compressed.js"></script>
+    <script src="/home/mrt/node_modules/blockly/msg/en.js"></script>
+    <script src="/home/mrt/node_modules/blockly/python_compressed.js"></script>
+    <script src="/home/mrt/node_modules/skulpt"></script>
+    <script src="time_block.js"></script> 
+    <script src="time_code.js"></script> 
+    <script src="Arduino2Rest_block.js"></script> 
+    <script src="Arduino2Rest_code.js"></script> 
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/2.0.2/skulpt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/skulpt/2.0.2/skulpt-stdlib.js"></script>
+
+
+</head>
+<body onload="brython()">
+    <div id="blocklyDiv" style="height: 800px; width: 1000px;"></div>
+
+<textarea id="pythonCode" rows="10" cols="50"></textarea>
+
+
+    <button onclick="runCode()">Ausführen</button>
+    <button onclick="showCode()">Show code</button>
+    <button onclick="speicherePythonDatei()">Python-Datei speichern</button>
+
+    <!-- Laden der Toolbox aus einer externen XML-Datei -->
+    <xml id="toolbox" style="display: none;">
+
+     <category name="Time" categorystyle="logic_category">
+
+        <block type="time_init" gap="32">  </block>
+        <block type="time_sleep" gap="32">  </block>
+
+            <block type="math_number" gap="32">
+              <field name="NUM">123</field>
+            </block>
+
+      </category>
+
+
+     <category name="Arduino2Rest" categorystyle="logic_category">
+
+        <block type="rest_init" gap="32"> </block>
+        <block type="rest_init_pyimport" gap="32"> </block>
+           <block type="text">
+            <field name="TEXT">/home/[PATH]/Arduino2Rest/</field>
+        </block>
+       <block type="arduino2rest" gap="32">  </block>
+
+        <block type="set_servo_position" gap="32">  </block>
+        <block type="set_analog" gap="32">  </block>
+        <block type="set_digital" gap="32">  </block>
+        <block type="get_digital" gap="32">  </block>
+        <block type="get_analog" gap="32">  </block>
+
+           <block type="text">
+            <field name="TEXT">myarduino</field>
+        </block>
+        <block type="text">
+            <field name="TEXT">192.168.3.12</field>
+        </block>
+
+        <block type="text_print">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+
+
+            <block type="math_number" gap="32">
+              <field name="d_in">0</field>
+            </block>
+
+            <block type="math_number" gap="32">
+              <field name="NUM">5</field>
+            </block>
+            <block type="math_number" gap="32">
+              <field name="NUM">9</field>
+            </block>
+
+
+      </category>
+
+
+     <category name="Logic" categorystyle="logic_category">
+        <block type="controls_if"></block>
+        <block type="logic_compare"></block>
+        <block type="logic_operation"></block>
+        <block type="logic_negate"></block>
+        <block type="logic_boolean"></block>
+        <block type="logic_null" disabled="true"></block>
+        <block type="logic_ternary"></block>
+      </category>
+      <category name="Loops" categorystyle="loop_category">
+        <block type="controls_repeat_ext">
+          <value name="TIMES">
+            <shadow type="math_number">
+              <field name="NUM">10</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="controls_repeat" disabled="true"></block>
+        <block type="controls_whileUntil"></block>
+        <block type="controls_for">
+          <value name="FROM">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <value name="TO">
+            <shadow type="math_number">
+              <field name="NUM">10</field>
+            </shadow>
+          </value>
+          <value name="BY">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="controls_forEach"></block>
+        <block type="controls_flow_statements"></block>
+      </category>
+      <category name="Math" categorystyle="math_category">
+        <block type="math_number" gap="32">
+          <field name="NUM">123</field>
+        </block>
+        <block type="math_arithmetic">
+          <value name="A">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <value name="B">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_single">
+          <value name="NUM">
+            <shadow type="math_number">
+              <field name="NUM">9</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_trig">
+          <value name="NUM">
+            <shadow type="math_number">
+              <field name="NUM">45</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_constant"></block>
+        <block type="math_number_property">
+          <value name="NUMBER_TO_CHECK">
+            <shadow type="math_number">
+              <field name="NUM">0</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_round">
+          <value name="NUM">
+            <shadow type="math_number">
+              <field name="NUM">3.1</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_on_list"></block>
+        <block type="math_modulo">
+          <value name="DIVIDEND">
+            <shadow type="math_number">
+              <field name="NUM">64</field>
+            </shadow>
+          </value>
+          <value name="DIVISOR">
+            <shadow type="math_number">
+              <field name="NUM">10</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_constrain">
+          <value name="VALUE">
+            <shadow type="math_number">
+              <field name="NUM">50</field>
+            </shadow>
+          </value>
+          <value name="LOW">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <value name="HIGH">
+            <shadow type="math_number">
+              <field name="NUM">100</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_random_int">
+          <value name="FROM">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <value name="TO">
+            <shadow type="math_number">
+              <field name="NUM">100</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="math_random_float"></block>
+        <block type="math_atan2">
+          <value name="X">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+          <value name="Y">
+            <shadow type="math_number">
+              <field name="NUM">1</field>
+            </shadow>
+          </value>
+        </block>
+      </category>
+      <category name="Text" categorystyle="text_category">
+        <block type="text"></block>
+        <block type="text_join"></block>
+        <block type="text_append">
+          <value name="TEXT">
+            <shadow type="text"></shadow>
+          </value>
+        </block>
+        <block type="text_length">
+          <value name="VALUE">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_isEmpty">
+          <value name="VALUE">
+            <shadow type="text">
+              <field name="TEXT"></field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_indexOf">
+          <value name="VALUE">
+            <block type="variables_get">
+              <field name="VAR">text</field>
+            </block>
+          </value>
+          <value name="FIND">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_charAt">
+          <value name="VALUE">
+            <block type="variables_get">
+              <field name="VAR">text</field>
+            </block>
+          </value>
+        </block>
+        <block type="text_getSubstring">
+          <value name="STRING">
+            <block type="variables_get">
+              <field name="VAR">text</field>
+            </block>
+          </value>
+        </block>
+        <block type="text_changeCase">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_trim">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_count">
+          <value name="SUB">
+            <shadow type="text"></shadow>
+          </value>
+          <value name="TEXT">
+            <shadow type="text"></shadow>
+          </value>
+        </block>
+        <block type="text_replace">
+          <value name="FROM">
+            <shadow type="text"></shadow>
+          </value>
+          <value name="TO">
+            <shadow type="text"></shadow>
+          </value>
+          <value name="TEXT">
+            <shadow type="text"></shadow>
+          </value>
+        </block>
+        <block type="text_reverse">
+          <value name="TEXT">
+            <shadow type="text"></shadow>
+          </value>
+        </block>
+        <label text="Input/Output:" web-class="ioLabel"></label>
+        <block type="text_print">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="text_prompt_ext">
+          <value name="TEXT">
+            <shadow type="text">
+              <field name="TEXT">abc</field>
+            </shadow>
+          </value>
+        </block>
+      </category>
+      <category name="Lists" categorystyle="list_category">
+        <block type="lists_create_with">
+          <mutation items="0"></mutation>
+        </block>
+        <block type="lists_create_with"></block>
+        <block type="lists_repeat">
+          <value name="NUM">
+            <shadow type="math_number">
+              <field name="NUM">5</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="lists_length"></block>
+        <block type="lists_isEmpty"></block>
+        <block type="lists_indexOf">
+          <value name="VALUE">
+            <block type="variables_get">
+              <field name="VAR">list</field>
+            </block>
+          </value>
+        </block>
+        <block type="lists_getIndex">
+          <value name="VALUE">
+            <block type="variables_get">
+              <field name="VAR">list</field>
+            </block>
+          </value>
+        </block>
+        <block type="lists_setIndex">
+          <value name="LIST">
+            <block type="variables_get">
+              <field name="VAR">list</field>
+            </block>
+          </value>
+        </block>
+        <block type="lists_getSublist">
+          <value name="LIST">
+            <block type="variables_get">
+              <field name="VAR">list</field>
+            </block>
+          </value>
+        </block>
+        <block type="lists_split">
+          <value name="DELIM">
+            <shadow type="text">
+              <field name="TEXT">,</field>
+            </shadow>
+          </value>
+        </block>
+        <block type="lists_sort"></block>
+        <block type="lists_reverse"></block>
+      </category>
+      <sep></sep>
+      <category
+        name="Variables"
+        categorystyle="variable_category"
+        custom="VARIABLE"></category>
+      <category
+        name="Functions"
+        categorystyle="procedure_category"
+        custom="PROCEDURE"></category>
+
+
+
+    <script type="text/javascript">
+        var workspace = Blockly.inject('blocklyDiv', {
+            toolbox: document.getElementById('toolbox')
+        });
+
+        //Blockly.serialization.workspaces.load(startBlocks, workspace);
+
+        function runCode() {
+
+            var pythonCode = python.pythonGenerator.workspaceToCode(workspace);
+            try {
+                eval(pythonCode); // seems not possible to run directly from javascript. Maybe as a workaround with creating py file and executing
+            } catch (e) {
+                alert(e);
+            }
+        }
+
+      function showCode() {
+
+        var pythonCode = python.pythonGenerator.workspaceToCode(workspace);
+        
+        alert(pythonCode); // just have alook to the generated python code
+      }
+
+
+        function runPython() {
+
+        }
+        function speicherePythonDatei() {
+
+            const pythonCode = python.pythonGenerator.workspaceToCode(workspace);
+            // Dateiname der Python-Datei
+            const pythonFileName = 'mein_programm.py';
+
+            // Erstelle eine Blob aus dem Python-Code
+            const blob = new Blob([pythonCode], { type: 'text/plain' });
+
+            // Erstelle eine URL für die Blob-Daten
+            const url = URL.createObjectURL(blob);
+
+            // Erstelle einen Link für den Download der Python-Datei
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = pythonFileName;
+
+            // Füge den Link zum Dokument hinzu und klicke ihn automatisch an
+            document.body.appendChild(link);
+            link.click();
+
+            // Lösche die URL nach dem Herunterladen
+            URL.revokeObjectURL(url);
+        }
+
+    </script>
+
+</xml>
+</body>
+</html>
+
