@@ -1,6 +1,5 @@
 # Arduino2Rest
-## Class_Arduino2Rest.py
-## This is a Blockly Program based on the Class_Arduino2Rest.py
+## This Blockly lib is pure Javascript 
 ### Note: 
 - this lib is independent from any additional file
 - the code will direct generated and executed IN the browser
