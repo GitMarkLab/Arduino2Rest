@@ -1,29 +1,6 @@
-
 javascript.javascriptGenerator.forBlock['rest_init'] = function(block, generator) {
-    var code_python = 
-    
-`from Class_Arduino2Rest import Arduino2Rest\n
-
-def bool_to_string(value):
-    if value:
-        return True
-    else:
-        return False\n
-
-# Blockly liefert True / False --> der Arduino benötigt aber einen string
-def bool_to_int(value):
-    if value:
-        return 1
-    else:
-        return 0\n`;
-
-    var code_js = `\n`
-
-
-
 
 const code = `
-
 
 function restCall(ip, pin,type) {
     const url = 'http://' + ip + '/' + type + '-' + pin + '-value';
@@ -48,7 +25,6 @@ function restCall(ip, pin,type) {
     
     return result;
 };
-
 
 function set_rest_value(_obj, value_pin_in, value_analog_in ,type) {
 
@@ -86,59 +62,25 @@ function bool2int(value_analog_in) {
     return tempval;
 };
 
-
-
 `;
-
     return code;
 };
 
-
-
-
-
-
-
-
-//python.pythonGenerator.forBlock['rest_init_pyimport'] = function(block, generator) {
 javascript.javascriptGenerator.forBlock['rest_init_pyimport'] = function(block, generator) {
   var field_field_name = block.getFieldValue('field_NAME');
   var value_name_in = generator.valueToCode(block, 'NAME_in',  javascript.Order.ATOMIC);
 
-    var code_python = 
+var code_python = 
     
 `
-import sys
-import os
-
-# Pfad zur Bibliothek hinzufügen
-library_path = ${value_name_in}
-if library_path not in sys.path:
-    sys.path.append(library_path)
-
-# Bibliothek importieren
-from Class_Arduino2Rest import Arduino2Rest
-
-def bool_to_string(value):
-    if value:
-        return True
-    else:
-        return False\n
-
-# Blockly liefert True / False --> der Arduino benötigt aber einen string
-def bool_to_int(value):
-    if value:
-        return 1
-    else:
-        return 0\n`;
+dont use for JS
+`;
 
 
     var code_js = `\n`
     return code_js;
 };
 
-
-//python.pythonGenerator.forBlock['arduino2rest'] = function(block, generator) {
 javascript.javascriptGenerator.forBlock['arduino2rest'] = function(block, generator) {
   var field_obj_name = block.getFieldValue('OBJ_NAME');
   var value_obj_in = generator.valueToCode(block, 'obj_in',  javascript.Order.ATOMIC);
@@ -159,7 +101,6 @@ javascript.javascriptGenerator.forBlock['arduino2rest'] = function(block, genera
     return code;
 };
 
-//python.pythonGenerator.forBlock['set_servo_position'] = function(block, generator) {
 javascript.javascriptGenerator.forBlock['set_servo_position'] = function(block, generator) {
   var field_obj_name = block.getFieldValue('OBJ_NAME');
   var value_obj_in = generator.valueToCode(block, 'obj_in',  javascript.Order.ATOMIC);
